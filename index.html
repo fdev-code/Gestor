@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <!-- Iconos de FontAwesome para usuario, candado y redes sociales -->
+  <!-- Iconos de FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="code-with-nazia.css">
 </head>
@@ -22,44 +22,44 @@
           <input type="text" placeholder="Username" required>
         </div>
 
-        <!-- Campo de Contraseña -->
-        <div class="input-group">
+        <!-- Campo de Contraseña con Ojo Toggle -->
+        <div class="input-group password-group">
           <i class="fa-solid fa-lock input-icon"></i>
-          <input type="password" placeholder="Password" required>
+          <input type="password" id="passwordInput" placeholder="Password" required>
+          <i class="fa-solid fa-eye toggle-password" id="toggleIcon" onclick="togglePasswordVisibility()"></i>
         </div>
 
-        <!-- Opción Remember me -->
-        <div class="remember-me">
-          <input type="checkbox" id="remember">
-          <label for="remember">Remember me</label>
+        <!-- Opciones del formulario -->
+        <div class="form-actions">
+          <label class="remember-me">
+            <input type="checkbox"> Recordarme
+          </label>
+          <a href="#" class="forgot-pass">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <!-- Botón de Login -->
-        <button type="submit" class="btn-login">Login &rarr;</button>
-
-        <p class="social-text">or continue with</p>
-
-        <!-- Iconos de Redes Sociales -->
-        <div class="social-icons">
-          <a href="#"><i class="fa-brands fa-google"></i></a>
-          <a href="#"><i class="fa-brands fa-apple"></i></a>
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-        </div>
-
-        <!-- Enlace de registro -->
-        <p class="account-text">Don't have an account?</p>
+        <!-- Botón de envío -->
+        <button type="submit" class="submit-btn">Iniciar Sesión</button>
       </form>
     </div>
   </div>
 
-<script>
-    const form = document.querySelector('.login-form');
-    
-    form.addEventListener('submit', (e) => {
-      e.preventDefault(); // Evita que la página se recargue
-      const username = form.querySelector('input[type="text"]').value;
-      alert(`¡Bienvenido de nuevo, ${username}!`);
-    });
+  <!-- JavaScript para la visibilidad de contraseña -->
+  <script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('passwordInput');
+      const toggleIcon = document.getElementById('toggleIcon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+      }
+    }
   </script>
+
 </body>
 </html>
