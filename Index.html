@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- Iconos de FontAwesome para usuario, candado y redes sociales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="code-with-nazia.css">
+</head>
+<body>
+
+  <div class="glow-container">
+    <div class="card-content">
+      <h2 class="heading">Login</h2>
+      <p class="subheading">Please sign in to continue</p>
+
+      <form action="#" class="login-form">
+        <!-- Campo de Usuario -->
+        <div class="input-group">
+          <i class="fa-solid fa-user input-icon"></i>
+          <input type="text" placeholder="Username" required>
+        </div>
+
+        <!-- Campo de Contraseña -->
+        <div class="input-group">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" placeholder="Password" required>
+        </div>
+
+        <!-- Opción Remember me -->
+        <div class="remember-me">
+          <input type="checkbox" id="remember">
+          <label for="remember">Remember me</label>
+        </div>
+
+        <!-- Botón de Login -->
+        <button type="submit" class="btn-login">Login &rarr;</button>
+
+        <p class="social-text">or continue with</p>
+
+        <!-- Iconos de Redes Sociales -->
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-google"></i></a>
+          <a href="#"><i class="fa-brands fa-apple"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+
+        <!-- Enlace de registro -->
+        <p class="account-text">Don't have an account?</p>
+      </form>
+    </div>
+  </div>
+
+<script>
+    const form = document.querySelector('.login-form');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Evita que la página se recargue
+      const username = form.querySelector('input[type="text"]').value;
+      alert(`¡Bienvenido de nuevo, ${username}!`);
+    });
+  </script>
+</body>
+</html>
