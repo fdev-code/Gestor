@@ -17,8 +17,8 @@ body {
 /* Círculo contenedor con máscara para animación */
 .glow-container {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -38,12 +38,11 @@ body {
     #a855f7,
     #ec4899,
     #3b82f6,
-    transparent 100%
+    transparent 60%
   );
   animation: rotateGlow 3s linear infinite;
 }
 
-/* Animación de rotación continua */
 @keyframes rotateGlow {
   0% {
     transform: rotate(0deg);
@@ -105,11 +104,12 @@ body {
   transform: translateY(-50%);
   color: #71717a;
   font-size: 0.75rem;
+  z-index: 15;
 }
 
 .input-group input {
   width: 100%;
-  padding: 6px 10px 6px 28px;
+  padding: 6px 32px 6px 28px;
   background-color: #1f1d2b;
   border: 1px solid #2d2b3d;
   border-radius: 4px;
@@ -125,6 +125,27 @@ body {
 
 .input-group input::placeholder {
   color: #71717a;
+}
+
+/* Ajustes específicos para el grupo de contraseña */
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #71717a;
+  font-size: 0.75rem;
+  z-index: 20;
+  transition: color 0.2s;
+}
+
+.toggle-password:hover {
+  color: #ec4899;
 }
 
 /* Recordar usuario */
