@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <!-- Iconos de FontAwesome para usuario, candado y redes sociales -->
+  <!-- Iconos de FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="code-with-nazia.css">
 </head>
@@ -12,8 +12,8 @@
 
   <div class="glow-container">
     <div class="card-content">
-      <h2 class="heading">El Manao</h2>
-      <p class="subheading">Por favor, inicia sesión para continuar.</p>
+      <h2 class="heading">Manao</h2>
+      <p class="subheading">Por favor, inicia sesión para continuar</p>
 
       <form action="#" class="login-form">
         <!-- Campo de Usuario -->
@@ -22,10 +22,11 @@
           <input type="text" placeholder="Usuario" required>
         </div>
 
-        <!-- Campo de Contraseña -->
-        <div class="input-group">
+        <!-- Campo de Contraseña con Ojo Toggle -->
+        <div class="input-group password-group">
           <i class="fa-solid fa-lock input-icon"></i>
-          <input type="password" placeholder="Contraseña" required>
+          <input type="password" id="passwordInput" placeholder="Contraseña" required>
+          <i class="fa-solid fa-eye toggle-password" id="toggleIcon" onclick="togglePasswordVisibility()"></i>
         </div>
 
         <!-- Opción Remember me -->
@@ -35,7 +36,7 @@
         </div>
 
         <!-- Botón de Login -->
-        <button type="submit" class="btn-login">Iniciar &rarr;</button>
+        <button type="submit" class="btn-login">Inicio &rarr;</button>
 
         <p class="social-text">O continuar con</p>
 
@@ -47,15 +48,30 @@
         </div>
 
         <!-- Enlace de registro -->
-        <p class="account-text">No tienes cuenta?</p>
+        <p class="account-text">¿No tienes cuenta?</p>
       </form>
     </div>
   </div>
-<script>
+
+  <script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('passwordInput');
+      const toggleIcon = document.getElementById('toggleIcon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+      }
+    }
+
     const form = document.querySelector('.login-form');
-    
     form.addEventListener('submit', (e) => {
-      e.preventDefault(); // Evita que la página se recargue
+      e.preventDefault();
       const username = form.querySelector('input[type="text"]').value;
       alert(`¡Bienvenido de nuevo, ${username}!`);
     });
