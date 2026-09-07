@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bienvenido | Gestor</title>
-  <!-- Iconos de FontAwesome para el icono de salida -->
+  <!-- Iconos de FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -21,7 +21,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       position: relative;
     }
@@ -53,15 +53,59 @@
 
     .content {
       text-align: center;
+      max-width: 600px;
+      width: 90%;
     }
 
     h1 {
       color: #a855f7;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     p {
       color: #a1a1aa;
+      margin-bottom: 30px;
+    }
+
+    /* Cuadrícula para los 4 botones */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    /* Estilo neón para las tarjetas/botones */
+    .menu-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 12px;
+      padding: 25px 15px;
+      color: #ffffff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn i {
+      font-size: 1.8rem;
+      color: #a855f7;
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: #a855f7;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .menu-btn:hover i {
+      color: #ec4899;
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -77,10 +121,33 @@
   <div class="content">
     <h1>¡Inicio de sesión exitoso Manao!</h1>
     <p>El Manao te da la Bienvenida al panel principal de Gestor.</p>
+
+    <!-- Sección con los 4 botones -->
+    <div class="menu-grid">
+      <button class="menu-btn" onclick="alert('Opción Llamada seleccionada')">
+        <i class="fa-solid fa-phone"></i>
+        Llamada
+      </button>
+
+      <button class="menu-btn" onclick="alert('Opción Datos seleccionada')">
+        <i class="fa-solid fa-database"></i>
+        Datos
+      </button>
+
+      <button class="menu-btn" onclick="alert('Opción Mensajes seleccionada')">
+        <i class="fa-solid fa-envelope"></i>
+        Mensajes
+      </button>
+
+      <button class="menu-btn" onclick="alert('Opción Suspensión seleccionada')">
+        <i class="fa-solid fa-ban"></i>
+        Suspensión
+      </button>
+    </div>
   </div>
 
   <script>
-    // Evento para redirigir al Inicio al presionar Cerrar sesión
+    // Redirigir al Login al presionar Cerrar sesión
     document.getElementById('logoutBtn').addEventListener('click', () => {
       window.location.href = 'index.html';
     });
