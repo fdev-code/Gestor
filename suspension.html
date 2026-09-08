@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>suspension | Manao</title>
+  <title>Módulo de Suspensión | Gestor Manao</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -16,74 +16,118 @@
       background-color: #0d0d13;
       color: #ffffff;
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0px;
     }
 
-    /* Botón para regresar al Dashboard arriba a la izquierda */
-    .btn-back {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: transparent;
-      border: 1px solid #a855f7;
+    .form-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 16px;
+      padding: 30px;
+      width: 100%;
+      max-width: 950px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(4px);
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .form-header h2 {
+      color: #ec4899;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .submenu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sub-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 12px;
+      padding: 16px 20px;
       color: #ffffff;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: flex-start;
+      gap: 12px;
+      width: 100%;
       transition: all 0.3s ease;
-      text-decoration: none;
+      text-align: left;
     }
 
-    .btn-back:hover {
-      background: #a855f7;
-      box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+    .sub-btn i {
+      color: #a855f7;
+      font-size: 1.15rem;
+      transition: all 0.3s ease;
+    }
+
+    .sub-btn:hover {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: #a855f7;
       transform: translateY(-2px);
     }
 
-    .content {
-      text-align: center;
+    .sub-btn.active {
+      background: rgba(168, 85, 247, 0.2);
+      border-color: #ec4899;
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
     }
 
-    .icon-box {
-      font-size: 3rem;
-      color: #a855f7;
-      margin-bottom: 15px;
-    }
-
-    h1 {
-      color: #a855f7;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #a1a1aa;
+    .sub-btn.active i {
+      color: #ec4899;
     }
   </style>
 </head>
 <body>
 
-  <!-- Botón Volver -->
-  <a href="dashboard.html" class="btn-back">
-    <i class="fa-solid fa-arrow-left"></i>
-    Volver al menú
-  </a>
-
-  <div class="content">
-    <div class="icon-box">
-      <i class="fa-solid fa-phone"></i>
+  <div class="form-card">
+    <div class="form-header">
+      <h2><i class="fa-solid fa-ban"></i> Módulo de Suspensión</h2>
     </div>
-    <h1>Módulo de suspension</h1>
-    <p>Sección para la gestión y registro de suspension.</p>
+
+    <!-- Submenú de Suspensión -->
+    <div class="submenu-grid">
+      <button type="button" class="sub-btn" onclick="seleccionarBoton(this)">
+        <i class="fa-solid fa-file-invoice"></i> Suspendido en facturador, activo en udm
+      </button>
+
+      <button type="button" class="sub-btn" onclick="seleccionarBoton(this)">
+        <i class="fa-solid fa-server"></i> Activo en facturador, suspendido en udm
+      </button>
+
+      <button type="button" class="sub-btn" onclick="seleccionarBoton(this)">
+        <i class="fa-solid fa-building-shield"></i> Suspensión grandes clientes
+      </button>
+    </div>
   </div>
 
+  <script>
+    function seleccionarBoton(elemento) {
+      const botones = document.querySelectorAll('.sub-btn');
+      botones.forEach(btn => btn.classList.remove('active'));
+      elemento.classList.add('active');
+    }
+  </script>
 </body>
 </html>

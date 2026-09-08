@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Módulo de Mensajes | Gestor Manao</title>
+  <title>No Emite Llamada | Gestor Manao</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -50,6 +50,40 @@
       font-size: 1.25rem;
       text-transform: uppercase;
       letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-volver {
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 8px;
+      padding: 8px 14px;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-volver i {
+      color: #a855f7;
+      transition: all 0.3s ease;
+    }
+
+    .btn-volver:hover {
+      background: rgba(168, 85, 247, 0.25);
+      border-color: #ec4899;
+      transform: translateY(-1px);
+    }
+
+    .btn-volver:hover i {
+      color: #ec4899;
     }
 
     .submenu-grid {
@@ -69,10 +103,11 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      justify-content: flex-start;
+      gap: 12px;
+      width: 100%;
       transition: all 0.3s ease;
-      text-align: center;
+      text-align: left;
     }
 
     .sub-btn.full-row {
@@ -83,6 +118,7 @@
       color: #a855f7;
       font-size: 1.15rem;
       transition: all 0.3s ease;
+      flex-shrink: 0;
     }
 
     .sub-btn:hover {
@@ -101,7 +137,7 @@
       color: #ec4899;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .submenu-grid {
         grid-template-columns: 1fr;
       }
@@ -115,20 +151,24 @@
 
   <div class="form-card">
     <div class="form-header">
-      <h2><i class="fa-solid fa-envelope"></i> Módulo de Mensajes</h2>
+      <h2><i class="fa-solid fa-phone-slash"></i> No emite llamada</h2>
+      <button type="button" class="btn-volver" onclick="location.href='llamada.html'">
+        <i class="fa-solid fa-arrow-left"></i> Volver
+      </button>
     </div>
 
+    <!-- Submenú de Opciones -->
     <div class="submenu-grid">
-      <button type="button" class="sub-btn" data-sub="no-envia-recibe" onclick="seleccionarBoton(this)">
-        <i class="fa-solid fa-comment-slash"></i> No envia no recibe mensajes
+      <button type="button" class="sub-btn" onclick="seleccionarBoton(this)">
+        <i class="fa-solid fa-file-invoice"></i> Línea activa en facturador suspendida en udm
       </button>
 
-      <button type="button" class="sub-btn" data-sub="no-recibe-msj" onclick="seleccionarBoton(this)">
-        <i class="fa-solid fa-comment-dots"></i> No recibe mensajes
+      <button type="button" class="sub-btn" onclick="seleccionarBoton(this)">
+        <i class="fa-solid fa-ban"></i> Línea inhibida
       </button>
 
-      <button type="button" class="sub-btn full-row" data-sub="no-envia-msj" onclick="seleccionarBoton(this)">
-        <i class="fa-solid fa-paper-plane"></i> No envia mensajes
+      <button type="button" class="sub-btn full-row" onclick="seleccionarBoton(this)">
+        <i class="fa-solid fa-eraser"></i> Borrado de VLR voz
       </button>
     </div>
   </div>
