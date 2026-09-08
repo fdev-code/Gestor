@@ -169,6 +169,13 @@
       letter-spacing: 1px;
     }
 
+    /* Contenedor para alinear los botones de arriba */
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .btn-import {
       background: transparent;
       border: 1px solid #3b82f6;
@@ -187,6 +194,26 @@
       background: rgba(59, 130, 246, 0.2);
       box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
       border-color: #60a5fa;
+    }
+
+    .btn-clear {
+      background: transparent;
+      border: 1px solid #ef4444;
+      color: #f87171;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-clear:hover {
+      background: rgba(239, 68, 68, 0.2);
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+      border-color: #f87171;
     }
 
     .form-grid {
@@ -404,9 +431,16 @@
         <div class="form-card">
           <div class="form-header">
             <h2><i class="fa-solid fa-file-invoice"></i> Formato de Reporte de Incidencias</h2>
-            <button class="btn-import" onclick="abrirModal()">
-              <i class="fa-solid fa-file-import"></i> Pegar texto de Outlook
-            </button>
+            <div class="header-actions">
+              <!-- Botón de Borrar Información -->
+              <button class="btn-clear" onclick="limpiarFormulario()">
+                <i class="fa-solid fa-trash-can"></i> Borrar información
+              </button>
+              <!-- Botón de Pegar Outlook -->
+              <button class="btn-import" onclick="abrirModal()">
+                <i class="fa-solid fa-file-import"></i> Pegar texto de Outlook
+              </button>
+            </div>
           </div>
 
           <form id="incidenciaForm">
@@ -552,20 +586,53 @@
       });
     });
 
+    // Función para limpiar/borrar todos los campos del formulario de incidencias
+    function limpiarFormulario() {
+      document.getElementById('incidenciaForm').reset();
+    }
+
     // Funciones del Modal de Outlook
     function abrirModal() {
       document.getElementById('importModal').style.display = 'flex';
+      document.getElementById('correoRawText').value = '';
     }
 
     function cerrarModal() {
       document.getElementById('importModal').style.display = 'none';
-      document.getElementById('correoRawText').value = '';
     }
 
-    // Procesar texto del correo (Ejemplo básico de extracción)
+    // Procesar texto del correo y rellenar automáticamente los campos del formulario
     function procesarCorreo() {
       const texto = document.getElementById('correoRawText').value;
-      // Lógica de parseo aquí
+
+      // Expresiones regulares robustas para extraer los datos del correo
+      const matchLinea = texto.match(/(?:Línea|Linea)\s*:?\s*([^\r\n]+)/i);
+      const matchSim = texto.match(/(?:Simcard|SIM)\s*:?\s*([^\r\n]+)/i);
+      const matchTipo = texto.match(/(?:Tipo de Cliente)\s*:?\s*([^\r\n]+)/i);
+      const matchTec = texto.match(/(?:Tecnología|Tecnologia)\s*:?\s*([^\r\n]+)/i);
+      const matchTitular = texto.match(/(?:Titular)\s*:?\s*([^\r\n]+)/i);
+      const matchCedula = texto.match(/(?:Cédula|Cedula)\s*:?\s*([^\r\n]+)/i);
+      const matchMotivo = texto.match(/(?:Motivo De Contacto|Motivo)\s*:?\s*([^\r\n]+)/i);
+      const matchEstado = texto.match(/Estado\s*:?\s*([^\r\n]+)/i);
+      const matchTelefono = texto.match(/(?:Teléfono De Contacto|Telefono)\s*:?\s*([^\r\n]+)/i);
+      const matchDealer = texto.match(/DEALER\s*:?\s*([^\r\n]+)/i);
+      
+      // Capturar detalle del contacto de forma multilínea segura
+      const matchDetalle = texto.match(/(?:Detalle Del Contacto|Detalle)\s*:?([\s\S]*?)(?=(?:Estado|Teléfono|DEALER|$))/i);
+
+      // Rellenar inputs del formulario con los datos extraídos
+      document.getElementById('linea').value = matchLinea ? matchLinea[1].trim() : '';
+      document.getElementById('simcard').value = matchSim ? matchSim[1].trim() : '';
+      document.getElementById('tipoCliente').value = matchTipo ? matchTipo[1].trim() : '';
+      document.getElementById('tecnologia').value = matchTec ? matchTec[1].trim() : '';
+      document.getElementById('titular').value = matchTitular ? matchTitular[1].trim() : '';
+      document.getElementById('cedula').value = matchCedula ? matchCedula[1].trim() : '';
+      document.getElementById('motivoContacto').value = matchMotivo ? matchMotivo[1].trim() : '';
+      document.getElementById('estado').value = matchEstado ? matchEstado[1].trim() : '';
+      document.getElementById('telefonoContacto').value = matchTelefono ? matchTelefono[1].trim() : '';
+      document.getElementById('dealer').value = matchDealer ? matchDealer[1].trim() : '';
+      document.getElementById('detalleContacto').value = matchDetalle ? matchDetalle[1].trim().replace(/\s+/g, ' ') : '';
+
       cerrarModal();
     }
 
