@@ -52,9 +52,10 @@
       letter-spacing: 1px;
     }
 
+    /* Modificado a Grid de 2 columnas para que coincida con mensajes */
     .submenu-grid {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 14px;
     }
 
@@ -97,6 +98,21 @@
     .sub-btn.active i {
       color: #ec4899;
     }
+
+    /* Clase para que el tercer botón ocupe toda la fila inferior */
+    .full-width {
+      grid-column: span 2;
+      justify-content: center; /* Opcional: centrar el contenido del tercer botón si lo prefieres */
+    }
+
+    @media (max-width: 768px) {
+      .submenu-grid {
+        grid-template-columns: 1fr;
+      }
+      .full-width {
+        grid-column: span 1;
+      }
+    }
   </style>
 </head>
 <body>
@@ -106,7 +122,7 @@
       <h2><i class="fa-solid fa-ban"></i> Módulo de Suspensión</h2>
     </div>
 
-    <!-- Submenú de Suspensión -->
+    <!-- Submenú de Suspensión con diseño de rejilla -->
     <div class="submenu-grid">
       <button type="button" class="sub-btn" onclick="seleccionarBoton(this)">
         <i class="fa-solid fa-file-invoice"></i> Suspendido en facturador, activo en udm
@@ -116,7 +132,8 @@
         <i class="fa-solid fa-server"></i> Activo en facturador, suspendido en udm
       </button>
 
-      <button type="button" class="sub-btn" onclick="seleccionarBoton(this)">
+      <!-- Este botón tiene la clase .full-width para ocupar toda la fila de abajo -->
+      <button type="button" class="sub-btn full-width" onclick="seleccionarBoton(this)">
         <i class="fa-solid fa-building-shield"></i> Suspensión grandes clientes
       </button>
     </div>
